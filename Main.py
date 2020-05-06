@@ -44,8 +44,8 @@ def excluir_cliente(id_cliente):
 
 
 def atualizar_cliente(id_cliente, cliente):
-    result = col_cliente.update_one({'_id': ObjectId(id_cliente)}, cliente.__dict__)
-    if result.inserted_id:
+    result = col_cliente.update_one({'_id': id_cliente}, {"$set": cliente.__dict__})
+    if result.modified_count > 0:
         print(f'\nO cliente {cliente.get_nome()} foi alterado com sucesso.')
 
 
@@ -79,11 +79,21 @@ def inserir_lanchonete(lanchonete):
 continuar = True
 
 while continuar:
-    print('\n---------- Menu ---------- ')
+    print('\n---------- Menu Cliente ---------- ')
     print('\n1 - Inserir cliente')
     print('\n2 - Listar clientes')
     print('\n3 - Excluir cliente')
     print('\n4 - Alterar cliente')
+    print('\n---------- Menu Fornecedor ---------- ')
+    print('\n1 - Inserir fornecedor')
+    print('\n2 - Listar fornecedores')
+    print('\n3 - Excluir fornecedor')
+    print('\n4 - Alterar fornecedor')
+    print('\n---------- Menu Lanchonete ---------- ')
+    print('\n1 - Inserir lanchonete')
+    print('\n2 - Listar lanchonetes')
+    print('\n3 - Excluir lanchonete')
+    print('\n4 - Alterar lanchonete')
     print('\n0 - Sair do sistema')
 
     opcao = input('\nInforme a opção desejada: ')
@@ -111,12 +121,9 @@ while continuar:
             mensagem_erro()
 
     elif opcao == '4':
-        try:
-            print("\n=====================Alterar Cliente=====================")
-            id_cliente = str(input("\nInforme o id do Cliente: "))
-            atualizar_cliente(id_cliente, preencher_cliente())
-        except:
-            mensagem_erro()
+        print("\n=====================Alterar Cliente=====================")
+        id_cliente = str(input("\nInforme o id do Cliente: "))
+        atualizar_cliente(id_cliente, preencher_cliente())
 
     elif opcao == '0':
         continuar = False
