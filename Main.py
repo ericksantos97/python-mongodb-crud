@@ -46,7 +46,7 @@ def excluir_cliente(id_cliente):
 
 
 def atualizar_cliente(id_cliente, cliente):
-    result = col_cliente.update_one({'_id': id_cliente}, {"$set": cliente.__dict__})
+    result = col_cliente.update_one({'_id': ObjectId(id_cliente)}, {"$set": cliente.__dict__})
     if result.modified_count > 0:
         print(f'\nO cliente {cliente.get_nome()} foi alterado com sucesso.')
 
@@ -85,7 +85,7 @@ def excluir_fornecedor(id_fornecedor):
 
 
 def atualizar_fornecedor(id_fornecedor, fornecedor):
-    result = col_fornecedor.update_one({'_id': id_fornecedor}, {"$set": fornecedor.__dict__})
+    result = col_fornecedor.update_one({'_id': ObjectId(id_fornecedor)}, {"$set": fornecedor.__dict__})
     if result.modified_count > 0:
         print(f'\nO fornecedor {fornecedor.get_nome()} foi alterado com sucesso.')
 
@@ -125,7 +125,7 @@ def excluir_lanchonete(id_lanchonete):
 
 
 def atualizar_lanchonete(id_lanchonete, lanchonete):
-    result = col_lanchonete.update_one({'_id': id_lanchonete}, {"$set": lanchonete.__dict__})
+    result = col_lanchonete.update_one({'_id': ObjectId(id_lanchonete)}, {"$set": lanchonete.__dict__})
     if result.modified_count > 0:
         print(f'\nA lanchonete {lanchonete.get_nome()} foi alterado com sucesso.')
 
